@@ -9,23 +9,47 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-                url('https://i.ibb.co/SdfWxs8/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-2ae57f68-1261-406a-bee1-24f66d4a3bfd.png');
-            background-size: cover;
-            background-position: center;
+            background-image: 
+                radial-gradient(circle, rgba(128, 128, 128, 0.5) 1px, transparent 1px),
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+                url('https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg');
+            background-size: 10px 10px, cover;
+            background-position: center top;
             background-attachment: fixed;
             position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
         body::before {
             content: none; /* Remove the previous overlay */
         }
         .menu-bar {
-            background-color: rgba(9, 156, 148, 0.8); /* Teal color with some transparency */
+            background-color: rgba(9, 156, 148, 0.8);
             display: flex;
             align-items: center;
-            padding: 15px 20px; /* Increased top and bottom padding */
+            padding: 15px 20px;
             position: relative;
-            justify-content: space-between; /* This will push the logo to the left and the social icon to the right */
+            justify-content: space-between;
+            transform: perspective(1000px) rotateX(2deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+                        inset 0 -8px 0 0 rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .menu-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #000000;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+            transform: perspective(1000px) rotateX(-45deg);
+        }
+        .menu-bar:hover {
+            transform: perspective(1000px) rotateX(0deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4),
+                        inset 0 -10px 0 0 rgba(0,0,0,0.3);
         }
         .logo {
             max-height: 110px; /* Slightly increased from the previous value */
@@ -38,16 +62,6 @@
             display: inline-block;
             overflow: hidden;
         }
-        .menu-bar::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; /* Adjusted to be closer to the menu bar */
-            left: 0;
-            width: 100%;
-            height: 5px; /* Reduced thickness */
-            background-color: #000000;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.5); /* Added shadow */
-        }
         .container {
             display: flex;
             justify-content: center;
@@ -55,17 +69,19 @@
             height: calc(100vh - 120px);
             flex-direction: column;
             position: relative; /* Add this to make absolute positioning work relative to the container */
+            min-height: 100vh;
         }
         .buy-box {
             background-color: rgba(9, 156, 148, 0.8);
             border: 3px solid #000000;
-            border-radius: 15px;
+            border-radius: 50px;
             padding: 20px 30px;
             font-size: 28px;
             font-weight: bold;
             color: #ffffff;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3),
+                        inset 0 -8px 0 0 rgba(0,0,0,0.2);
             transform: perspective(1000px) rotateX(10deg) rotateY(0deg);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             text-shadow: 2px 2px 0 #000000;
@@ -73,15 +89,37 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        .buy-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
         }
         .buy-box:hover {
             transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5),
+                        inset 0 -12px 0 0 rgba(0,0,0,0.3);
             background-color: rgba(9, 156, 148, 1);
+        }
+        .buy-box:hover::before {
+            left: 100%;
         }
         .buy-box:active {
             transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4),
+                        inset 0 -6px 0 0 rgba(0,0,0,0.2);
         }
         .zebra-title {
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -202,35 +240,992 @@
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
+
+        @media (max-width: 768px) {
+            .menu-bar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .logo {
+                max-height: 80px;
+                margin-bottom: 10px;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .social-logo {
+                max-height: 40px;
+            }
+
+            .container {
+                height: calc(100vh - 180px);
+                padding: 0 20px;
+            }
+
+            .zebra-title {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+
+            .buy-box {
+                font-size: 24px;
+                padding: 15px 25px;
+            }
+
+            .falling-image {
+                max-width: 150px;
+            }
+
+            .falling-coin {
+                width: 60px;
+                height: 60px;
+            }
+
+            .zebra-title {
+                font-size: 36px; /* Reduce font size further for mobile */
+                word-wrap: break-word; /* Allow long words to break */
+                max-width: 100%; /* Ensure title doesn't exceed screen width */
+            }
+
+            .buy-box {
+                font-size: 20px; /* Reduce font size for mobile */
+                padding: 12px 20px; /* Reduce padding for mobile */
+                max-width: 90%; /* Ensure button doesn't exceed screen width */
+            }
+
+            .falling-image {
+                max-width: 120px; /* Reduce size further for mobile */
+            }
+        }
+
+        @media (max-width: 320px) {
+            .zebra-title {
+                font-size: 28px;
+            }
+
+            .buy-box {
+                font-size: 18px;
+                padding: 10px 15px;
+            }
+        }
+
+        .scrolling-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(9, 156, 148, 0.8);
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+            overflow: hidden;
+            height: 60px; /* Adjust height as needed */
+            transform: perspective(1000px) rotateX(10deg); /* Increased rotation for 3D effect */
+            box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5), /* Green shadow */
+                        inset 0 2px 0 rgba(255,255,255,0.2),
+                        5px 5px 15px rgba(0, 255, 0, 0.7); /* Added green 3D shadow */
+            animation: flicker 1.5s infinite alternate; /* Add flicker animation */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scrolling-box::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; /* Adjusted to account for the new bottom border */
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #000000;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+            transform: perspective(1000px) rotateX(-45deg);
+        }
+
+        .scrolling-box:hover {
+            transform: perspective(1000px) rotateX(0deg);
+            box-shadow: 0 -8px 15px rgba(0,0,0,0.4),
+                        inset 0 2px 0 rgba(255,255,255,0.3);
+        }
+
+        .scrolling-text {
+            white-space: nowrap;
+            animation: scroll-left 20s linear infinite;
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Cartoon font */
+            font-size: 30px; /* Increased font size */
+            color: white;
+            padding: 8px 0;
+            text-shadow: 
+                2px 2px 0 #000, /* Black shadow for 3D effect */
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Adjust the container to account for the fixed scrolling box */
+        .container {
+            padding-bottom: 40px; /* Add padding to prevent content from being hidden behind the scrolling box */
+        }
+
+        /* Adjust media query for mobile devices */
+        @media (max-width: 768px) {
+            .container {
+                padding-bottom: 40px; /* Ensure consistent padding on mobile */
+            }
+        }
+
+        .extended-background {
+            position: absolute;
+            top: 100vh;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+                url('https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .container {
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 40px; /* Account for the scrolling box */
+        }
+
+        /* Add this new style for the background container */
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .background-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes flicker {
+            0% {
+                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5),
+                            inset 0 2px 0 rgba(255,255,255,0.2),
+                            5px 5px 15px rgba(0, 255, 0, 0.7);
+            }
+            50% {
+                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.3),
+                            inset 0 2px 0 rgba(255,255,255,0.2),
+                            5px 5px 15px rgba(0, 255, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5),
+                            inset 0 2px 0 rgba(255,255,255,0.2),
+                            5px 5px 15px rgba(0, 255, 0, 0.7);
+            }
+        }
     </style>
 </head>
 <body>
-    <nav class="menu-bar">
-        <a href="/" class="logo-link">
-            <img src="https://i.ibb.co/1sZXtqy/Zebra-Zilla2.jpg" alt="Zebra-Zilla2 Logo" class="logo">
-        </a>
-        <div class="social-icons">
-            <a href="https://x.com" target="_blank" class="social-icon">
-                <img src="https://i.ibb.co/hZ5cJGs/social-media-14417460-1.jpg" alt="X (Twitter) Icon" class="social-logo">
+    <div class="background-container">
+        <img src="https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg" alt="Background" class="background-image">
+    </div>
+    <div class="content-wrapper">
+        <nav class="menu-bar">
+            <a href="/" class="logo-link">
+                <img src="https://i.ibb.co/1sZXtqy/Zebra-Zilla2.jpg" alt="Zebra-Zilla2 Logo" class="logo">
             </a>
-            <a href="https://t.me/YourTelegramChannel" target="_blank" class="social-icon">
-                <img src="https://i.ibb.co/xLkpwTv/paper-plane-15793418.jpg" alt="Telegram Icon" class="social-logo">
+            <div class="social-icons">
+                <a href="https://x.com" target="_blank" class="social-icon">
+                    <img src="https://i.ibb.co/hZ5cJGs/social-media-14417460-1.jpg" alt="X (Twitter) Icon" class="social-logo">
+                </a>
+                <a href="https://t.me/YourTelegramChannel" target="_blank" class="social-icon">
+                    <img src="https://i.ibb.co/xLkpwTv/paper-plane-15793418.jpg" alt="Telegram Icon" class="social-logo">
+                </a>
+                <a href="https://pump.fun" target="_blank" class="social-icon">
+                    <img src="https://i.ibb.co/1bMB9JZ/0-Rwq-Gm887t-St-Aj-YXs-removebg-preview.png" alt="Pump.fun Icon" class="social-logo">
+                </a>
+                <a href="https://pump.fun" target="_blank" class="social-icon">
+                    <img src="https://i.ibb.co/2MQKQ5z/661375b92a7e161501f4b5e5-dexscreener-322a5a2d.jpg" alt="DexScreener Icon" class="social-logo">
+                </a>
+            </div>
+        </nav>
+        <div id="falling-coins-container"></div>
+        <div class="container" style="position: relative;">
+            <h1 class="zebra-title">ZebraZilla</h1>
+            <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
+                Buy $ZebraZilla Coin
             </a>
-            <a href="https://pump.fun" target="_blank" class="social-icon">
-                <img src="https://i.ibb.co/1bMB9JZ/0-Rwq-Gm887t-St-Aj-YXs-removebg-preview.png" alt="Pump.fun Icon" class="social-logo">
-            </a>
-            <a href="https://pump.fun" target="_blank" class="social-icon">
-                <img src="https://i.ibb.co/2MQKQ5z/661375b92a7e161501f4b5e5-dexscreener-322a5a2d.jpg" alt="DexScreener Icon" class="social-logo">
-            </a>
+            <div class="scrolling-box" style="position: absolute; top: calc(100% - 250px); left: 0; width: 100%;">
+                <div class="scrolling-text">
+                    <!-- Repeat the text enough times to ensure it fills the space -->
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                    <span style="color: green;">$</span>ZebraZilla
+                </div>
+            </div>
+            <img src="https://i.ibb.co/1qNYnm1/Zilla-Bez-noh.jpg" alt="Zilla without legs" class="falling-image">
         </div>
-    </nav>
-    <div id="falling-coins-container"></div>
-    <div class="container">
-        <h1 class="zebra-title">ZebraZilla</h1>
-        <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
-            Buy $ZebraZilla Coin
-        </a>
-        <img src="https://i.ibb.co/1qNYnm1/Zilla-Bez-noh.jpg" alt="Zilla without legs" class="falling-image">
     </div>
 
     <script>
