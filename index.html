@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebra-Zilla Menu Bar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+                url('https://i.ibb.co/SdfWxs8/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-2ae57f68-1261-406a-bee1-24f66d4a3bfd.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        body::before {
+            content: none; /* Remove the previous overlay */
+        }
+        .menu-bar {
+            background-color: rgba(9, 156, 148, 0.8); /* Teal color with some transparency */
+            display: flex;
+            align-items: center;
+            padding: 15px 20px; /* Increased top and bottom padding */
+            position: relative;
+            justify-content: space-between; /* This will push the logo to the left and the social icon to the right */
+        }
+        .logo {
+            max-height: 110px; /* Slightly increased from the previous value */
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            animation: bounce 0.5s ease infinite alternate;
+        }
+        .logo-link {
+            display: inline-block;
+            overflow: hidden;
+        }
+        .menu-bar::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; /* Adjusted to be closer to the menu bar */
+            left: 0;
+            width: 100%;
+            height: 5px; /* Reduced thickness */
+            background-color: #000000;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5); /* Added shadow */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 120px);
+            flex-direction: column;
+            position: relative; /* Add this to make absolute positioning work relative to the container */
+        }
+        .buy-box {
+            background-color: rgba(9, 156, 148, 0.8);
+            border: 3px solid #000000;
+            border-radius: 15px;
+            padding: 20px 30px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: perspective(1000px) rotateX(10deg) rotateY(0deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            text-shadow: 2px 2px 0 #000000;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .buy-box:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            background-color: rgba(9, 156, 148, 1);
+        }
+        .buy-box:active {
+            transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+        }
+        .zebra-title {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 72px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 
+                4px 4px 0 #000,
+                -4px -4px 0 #000,
+                4px -4px 0 #000,
+                -4px 4px 0 #000;
+            background: repeating-linear-gradient(
+                45deg,
+                #ffffff,
+                #ffffff 10px,
+                #000000 10px,
+                #000000 20px
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: white;
+            background-clip: text;
+            animation: stripes 30s linear infinite;
+            position: relative; /* Add this to ensure the title stays on top */
+            z-index: 11; /* Higher than the falling image */
+        }
+
+        @keyframes stripes {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        .falling-image {
+            position: absolute;
+            top: -200px; /* Start above the viewport */
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 200px;
+            opacity: 0;
+            transition: top 0.5s ease, opacity 0.5s ease;
+            pointer-events: none; /* Prevent image from interfering with clicks */
+            z-index: 10;
+        }
+
+        .buy-box:hover ~ .falling-image {
+            top: 175px; /* Adjusted to fall just a tiny bit lower */
+            opacity: 1;
+        }
+
+        #falling-coins-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .falling-coin {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            animation: fallAnimation linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fallAnimation {
+            0% {
+                transform: translateY(-80px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(calc(100vh + 80px)) rotate(360deg);
+            }
+        }
+        .social-icon {
+            display: flex;
+            align-items: center;
+        }
+        .social-logo {
+            max-height: 50px; /* Increased from 40px to 50px */
+            width: auto; /* Ensure the width adjusts proportionally */
+            transition: transform 0.3s ease;
+        }
+        .social-logo:hover {
+            animation: bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                transform: translateY(-10px) scale(1.1);
+            }
+        }
+
+        .menu-bar {
+            justify-content: space-between;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased gap for better spacing between larger icons */
+        }
+
+        .zilla-image {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu-bar">
+        <a href="/" class="logo-link">
+            <img src="https://i.ibb.co/1sZXtqy/Zebra-Zilla2.jpg" alt="Zebra-Zilla2 Logo" class="logo">
+        </a>
+        <div class="social-icons">
+            <a href="https://x.com" target="_blank" class="social-icon">
+                <img src="https://i.ibb.co/hZ5cJGs/social-media-14417460-1.jpg" alt="X (Twitter) Icon" class="social-logo">
+            </a>
+            <a href="https://t.me/YourTelegramChannel" target="_blank" class="social-icon">
+                <img src="https://i.ibb.co/xLkpwTv/paper-plane-15793418.jpg" alt="Telegram Icon" class="social-logo">
+            </a>
+            <a href="https://pump.fun" target="_blank" class="social-icon">
+                <img src="https://i.ibb.co/1bMB9JZ/0-Rwq-Gm887t-St-Aj-YXs-removebg-preview.png" alt="Pump.fun Icon" class="social-logo">
+            </a>
+            <a href="https://pump.fun" target="_blank" class="social-icon">
+                <img src="https://i.ibb.co/2MQKQ5z/661375b92a7e161501f4b5e5-dexscreener-322a5a2d.jpg" alt="DexScreener Icon" class="social-logo">
+            </a>
+        </div>
+    </nav>
+    <div id="falling-coins-container"></div>
+    <div class="container">
+        <h1 class="zebra-title">ZebraZilla</h1>
+        <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
+            Buy $ZebraZilla Coin
+        </a>
+        <img src="https://i.ibb.co/1qNYnm1/Zilla-Bez-noh.jpg" alt="Zilla without legs" class="falling-image">
+    </div>
+
+    <script>
+        function createFallingCoin() {
+            const coin = document.createElement('img');
+            coin.src = 'https://i.ibb.co/7Vr2mDH/mastnyjozo-generate-me-crypto-cartoon-coin-2-D-with-name-Zebra-Zi-959b453e-e5c1-4bff-9fd7-8579d7c420.png';
+            coin.classList.add('falling-coin');
+            coin.style.left = `${Math.random() * 100}vw`;
+            coin.style.animationDuration = `${Math.random() * 6 + 6}s`; // 6-12 seconds duration
+            coin.style.top = `${Math.random() * -100}px`; // Start above the viewport
+            document.getElementById('falling-coins-container').appendChild(coin);
+
+            // Remove the coin after it has fallen out of view
+            setTimeout(() => {
+                coin.remove();
+                // Create a new coin to maintain the count
+                createFallingCoin();
+            }, parseFloat(coin.style.animationDuration) * 1000);
+        }
+
+        // Create initial coins
+        for (let i = 0; i < 15; i++) { // Increased to 15 initial coins
+            createFallingCoin();
+        }
+
+        // No need for setInterval anymore
+    </script>
+</body>
+</html>
