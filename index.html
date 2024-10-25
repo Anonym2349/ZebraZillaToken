@@ -9,16 +9,17 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            background-color: #808080; /* Medium gray background */
             background-image: 
-                radial-gradient(circle, rgba(128, 128, 128, 0.5) 1px, transparent 1px),
-                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-                url('https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg');
-            background-size: 10px 10px, cover;
-            background-position: center top;
-            background-attachment: fixed;
+                radial-gradient(circle, #a0a0a0 1px, transparent 1px), /* Light grey dots */
+                radial-gradient(circle, #606060 1px, transparent 1px); /* Dark grey dots */
+            background-size: 20px 20px, 30px 30px;
+            background-position: 0 0, 10px 10px;
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         body::before {
             content: none; /* Remove the previous overlay */
@@ -63,20 +64,18 @@
             overflow: hidden;
         }
         .container {
+            flex: 1 0 auto;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 120px);
             flex-direction: column;
-            position: relative; /* Add this to make absolute positioning work relative to the container */
-            min-height: 100vh;
+            justify-content: flex-start;
+            padding-bottom: 100px; /* Increased padding at the bottom */
         }
         .buy-box {
             background-color: rgba(9, 156, 148, 0.8);
             border: 3px solid #000000;
             border-radius: 50px;
-            padding: 20px 30px;
-            font-size: 28px;
+            padding: 20px 30px; /* Further increased padding */
+            font-size: 28px; /* Further increased font size */
             font-weight: bold;
             color: #ffffff;
             text-align: center;
@@ -91,6 +90,9 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
+            max-width: 320px; /* Increased from 280px to 320px */
+            margin: 0 auto; /* Center the box */
+            animation: blinkingShadow 2s infinite;
         }
         .buy-box::before {
             content: '';
@@ -110,8 +112,10 @@
         .buy-box:hover {
             transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.1);
             box-shadow: 0 15px 30px rgba(0,0,0,0.5),
-                        inset 0 -12px 0 0 rgba(0,0,0,0.3);
+                        inset 0 -12px 0 0 rgba(0,0,0,0.3),
+                        0 0 40px rgba(0, 255, 0, 0.9);
             background-color: rgba(9, 156, 148, 1);
+            animation: none;
         }
         .buy-box:hover::before {
             left: 100%;
@@ -126,6 +130,7 @@
             font-size: 72px;
             font-weight: bold;
             text-align: center;
+            margin-top: 30px; /* Add this line to move the title down */
             margin-bottom: 30px;
             color: white;
             text-shadow: 
@@ -144,8 +149,8 @@
             -webkit-text-fill-color: white;
             background-clip: text;
             animation: stripes 30s linear infinite;
-            position: relative; /* Add this to ensure the title stays on top */
-            z-index: 11; /* Higher than the falling image */
+            position: relative;
+            z-index: 11;
         }
 
         @keyframes stripes {
@@ -170,7 +175,7 @@
         }
 
         .buy-box:hover ~ .falling-image {
-            top: 175px; /* Adjusted to fall just a tiny bit lower */
+            top: 250px; /* Adjusted to fall even lower */
             opacity: 1;
         }
 
@@ -236,15 +241,26 @@
         .zilla-image {
             max-width: 300px;
             height: auto;
+            margin-top: 20px; /* Add this line to move the image down */
             margin-bottom: 20px;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.3);
         }
 
         @media (max-width: 768px) {
+            body {
+                background-size: 5px 5px; /* Remove the cover background size */
+            }
+
             .menu-bar {
                 flex-direction: column;
                 padding: 10px;
+                transform: none;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            }
+
+            .menu-bar::after {
+                display: none;
             }
 
             .logo {
@@ -254,208 +270,359 @@
 
             .social-icons {
                 justify-content: center;
+                gap: 10px;
             }
 
             .social-logo {
-                max-height: 40px;
+                max-height: 30px;
             }
 
             .container {
-                height: calc(100vh - 180px);
-                padding: 0 20px;
+                height: auto;
+                min-height: calc(100% - 180px);
+                padding: 20px;
             }
 
             .zebra-title {
-                font-size: 48px;
+                font-size: 36px;
                 margin-bottom: 20px;
             }
 
             .buy-box {
-                font-size: 24px;
-                padding: 15px 25px;
+                font-size: 24px; /* Increased from 20px */
+                padding: 15px 25px; /* Increased padding */
+                max-width: 260px; /* Increased from 220px */
+            }
+
+            .buy-box:hover {
+                transform: scale(1.05);
             }
 
             .falling-image {
                 max-width: 150px;
             }
 
-            .falling-coin {
-                width: 60px;
-                height: 60px;
+            .scrolling-box {
+                height: 40px;
+                transform: none;
             }
 
-            .zebra-title {
-                font-size: 36px; /* Reduce font size further for mobile */
-                word-wrap: break-word; /* Allow long words to break */
-                max-width: 100%; /* Ensure title doesn't exceed screen width */
+            .scrolling-text {
+                font-size: 20px;
             }
 
-            .buy-box {
-                font-size: 20px; /* Reduce font size for mobile */
-                padding: 12px 20px; /* Reduce padding for mobile */
-                max-width: 90%; /* Ensure button doesn't exceed screen width */
-            }
-
-            .falling-image {
-                max-width: 120px; /* Reduce size further for mobile */
+            .zilla-image {
+                max-width: 80%;
             }
         }
 
-        @media (max-width: 320px) {
+        @media (max-width: 480px) {
             .zebra-title {
                 font-size: 28px;
             }
 
             .buy-box {
-                font-size: 18px;
+                font-size: 20px; /* Increased from 18px */
+                padding: 12px 20px; /* Increased padding */
+                max-width: 220px; /* Added max-width for smallest screens */
+            }
+
+            .falling-image {
+                max-width: 120px;
+            }
+
+            .scrolling-text {
+                font-size: 16px;
+            }
+        }
+
+        /* Add this new media query for very small devices */
+        @media (max-width: 320px) {
+            .zebra-title {
+                font-size: 24px;
+            }
+
+            .buy-box {
+                font-size: 14px;
                 padding: 10px 15px;
             }
+
+            .falling-image {
+                max-width: 100px;
+            }
+
+            .scrolling-text {
+                font-size: 14px;
+            }
         }
 
-        .scrolling-box {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+        .ca-box {
             background-color: rgba(9, 156, 148, 0.8);
-            border-top: 3px solid black;
-            border-bottom: 3px solid black;
-            overflow: hidden;
-            height: 60px; /* Adjust height as needed */
-            transform: perspective(1000px) rotateX(10deg); /* Increased rotation for 3D effect */
-            box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5), /* Green shadow */
-                        inset 0 2px 0 rgba(255,255,255,0.2),
-                        5px 5px 15px rgba(0, 255, 0, 0.7); /* Added green 3D shadow */
-            animation: flicker 1.5s infinite alternate; /* Add flicker animation */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 1000;
-        }
-
-        .scrolling-box::after {
-            content: '';
-            position: absolute;
-            bottom: -8px; /* Adjusted to account for the new bottom border */
-            left: 0;
+            border: 3px solid #000000;
+            border-radius: 25px;
+            padding: 8px 12px; /* Reduced padding */
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3),
+                        inset 0 -8px 0 0 rgba(0,0,0,0.2);
+            cursor: pointer;
+            margin: 20px auto; /* Reduced top and bottom margin */
+            transform: perspective(1000px) rotateX(10deg) rotateY(0deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            max-width: 300px; /* Reduced max-width */
             width: 100%;
-            height: 5px;
-            background-color: #000000;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.5);
-            transform: perspective(1000px) rotateX(-45deg);
+            height: 40px; /* Reduced height */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .scrolling-box:hover {
-            transform: perspective(1000px) rotateX(0deg);
-            box-shadow: 0 -8px 15px rgba(0,0,0,0.4),
-                        inset 0 2px 0 rgba(255,255,255,0.3);
+        .ca-box:hover {
+            transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5),
+                        inset 0 -12px 0 0 rgba(0,0,0,0.3);
+            background-color: rgba(9, 156, 148, 1);
         }
 
-        .scrolling-text {
-            white-space: nowrap;
-            animation: scroll-left 20s linear infinite;
-            font-family: 'Comic Sans MS', cursive, sans-serif; /* Cartoon font */
-            font-size: 30px; /* Increased font size */
-            color: white;
-            padding: 8px 0;
-            text-shadow: 
-                2px 2px 0 #000, /* Black shadow for 3D effect */
-                -2px -2px 0 #000,
-                2px -2px 0 #000,
-                -2px 2px 0 #000;
+        .ca-box:active {
+            transform: perspective(1000px) rotateX(0deg) rotateY(-5deg) scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4),
+                        inset 0 -6px 0 0 rgba(0,0,0,0.2);
         }
 
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+        .ca-text {
+            flex-grow: 1;
+            text-align: left;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 16px; /* Slightly reduced font size */
+            text-shadow: 1px 1px 0 #000000;
         }
 
-        /* Adjust the container to account for the fixed scrolling box */
-        .container {
-            padding-bottom: 40px; /* Add padding to prevent content from being hidden behind the scrolling box */
+        .clipboard-icon {
+            width: 20px; /* Reduced icon size */
+            height: 20px;
+            margin-left: 8px; /* Reduced margin */
         }
 
-        /* Adjust media query for mobile devices */
         @media (max-width: 768px) {
-            .container {
-                padding-bottom: 40px; /* Ensure consistent padding on mobile */
+            .ca-box {
+                font-size: 14px;
+                padding: 6px 10px;
+                height: 36px;
+            }
+            
+            .clipboard-icon {
+                width: 18px;
+                height: 18px;
             }
         }
 
-        .extended-background {
-            position: absolute;
-            top: 100vh;
-            left: 0;
-            right: 0;
-            height: 100vh;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
-                url('https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
+        @media (max-width: 480px) {
+            .ca-box {
+                font-size: 12px;
+                padding: 5px 8px;
+                height: 30px;
+            }
+            
+            .clipboard-icon {
+                width: 16px;
+                height: 16px;
+            }
         }
 
-        .container {
-            min-height: 100vh;
+        /* Footer Styles */
+        .site-footer {
+            flex-shrink: 0;
+            width: 100%;
+            background-color: rgba(9, 156, 148, 0.9);
+            color: #ffffff;
+            padding: 40px 0 20px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            border-top: 3px solid #000000;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center the footer content */
+            gap: 20px; /* Slightly increased gap */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 160px; /* Slightly increased from 150px */
+            max-width: 240px; /* Increased from 220px to 240px */
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .footer-section h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #000000;
+        }
+
+        .footer-section p, .footer-section ul {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #000000;
+        }
+
+        .footer-section .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-section .social-icons img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* New style for the space between CA box and footer */
+        .footer-spacer {
+            flex-grow: 1;
+            min-height: 200px; /* Add minimum height to ensure scrollability */
         }
 
         .content-wrapper {
-            position: relative;
-            min-height: 100vh;
-            padding-bottom: 40px; /* Account for the scrolling box */
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Add this new style for the background container */
-        .background-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-bottom: 100px;
+        }
+
+        .footer-spacer {
+            flex-grow: 1;
+            min-height: 200px;
+        }
+
+        .site-footer {
+            flex-shrink: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
+            background-color: rgba(9, 156, 148, 0.9);
+            color: #ffffff;
+            padding: 40px 0 20px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            border-top: 3px solid #000000;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
         }
 
-        .background-image {
-            width: 100%;
-            height: auto;
-            display: block;
+        /* ... rest of the existing styles ... */
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                min-height: calc(100vh - 180px); /* Adjust based on your footer height */
+            }
         }
 
-        @keyframes flicker {
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .zebra-title {
+            margin-bottom: 30px;
+        }
+
+        .buy-box {
+            margin: 20px auto;
+        }
+
+        .ca-box {
+            margin: 20px auto;
+        }
+
+        @keyframes blinkingShadow {
             0% {
-                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5),
-                            inset 0 2px 0 rgba(255,255,255,0.2),
-                            5px 5px 15px rgba(0, 255, 0, 0.7);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3),
+                            inset 0 -8px 0 0 rgba(0,0,0,0.2),
+                            0 0 20px rgba(0, 255, 0, 0.7);
             }
             50% {
-                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.3),
-                            inset 0 2px 0 rgba(255,255,255,0.2),
-                            5px 5px 15px rgba(0, 255, 0, 0.5);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3),
+                            inset 0 -8px 0 0 rgba(0,0,0,0.2),
+                            0 0 40px rgba(0, 255, 0, 0.9);
             }
             100% {
-                box-shadow: 0 -10px 20px rgba(0, 255, 0, 0.5),
-                            inset 0 2px 0 rgba(255,255,255,0.2),
-                            5px 5px 15px rgba(0, 255, 0, 0.7);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.3),
+                            inset 0 -8px 0 0 rgba(0,0,0,0.2),
+                            0 0 20px rgba(0, 255, 0, 0.7);
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-container">
-        <img src="https://i.ibb.co/mt0TMWj/mastnyjozo-generate-me-cartoon-skyscraperslike-in-a-fairy-tale-453220d9-b138-48ef-b36f-662eb8c51c04.jpg" alt="Background" class="background-image">
-    </div>
     <div class="content-wrapper">
         <nav class="menu-bar">
             <a href="/" class="logo-link">
                 <img src="https://i.ibb.co/1sZXtqy/Zebra-Zilla2.jpg" alt="Zebra-Zilla2 Logo" class="logo">
             </a>
             <div class="social-icons">
-                <a href="https://x.com" target="_blank" class="social-icon">
+                <a href="https://x.com/ZebraZillaCoin" target="_blank" class="social-icon">
                     <img src="https://i.ibb.co/hZ5cJGs/social-media-14417460-1.jpg" alt="X (Twitter) Icon" class="social-logo">
                 </a>
-                <a href="https://t.me/YourTelegramChannel" target="_blank" class="social-icon">
+                <a href="https://t.me/+pBA3TnLKUAUzY2Y0" target="_blank" class="social-icon">
                     <img src="https://i.ibb.co/xLkpwTv/paper-plane-15793418.jpg" alt="Telegram Icon" class="social-logo">
                 </a>
                 <a href="https://pump.fun" target="_blank" class="social-icon">
@@ -468,767 +635,62 @@
         </nav>
         <div id="falling-coins-container"></div>
         <div class="container" style="position: relative;">
-            <h1 class="zebra-title">ZebraZilla</h1>
-            <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
-                Buy $ZebraZilla Coin
-            </a>
-            <div class="scrolling-box" style="position: absolute; top: calc(100% - 250px); left: 0; width: 100%;">
-                <div class="scrolling-text">
-                    <!-- Repeat the text enough times to ensure it fills the space -->
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
-                    <span style="color: green;">$</span>ZebraZilla
+            <div class="centered-content">
+                <h1 class="zebra-title">ZebraZilla</h1>
+                <!-- Updated image -->
+                <img src="https://i.ibb.co/jV9t7jb/Zilla-Bez-noh.jpg" alt="ZebraZilla Logo" class="zilla-image">
+                <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
+                    Buy <span style="color: green;">$</span>ZebraZilla Coin
+                </a>
+                <div class="ca-box" onclick="copyCA()">
+                    <span class="ca-text">CA: mi XXXXX</span>
+                    <img src="https://i.ibb.co/1qc2Bfm/copy-3962627.png" alt="Copy" class="clipboard-icon">
                 </div>
             </div>
             <img src="https://i.ibb.co/1qNYnm1/Zilla-Bez-noh.jpg" alt="Zilla without legs" class="falling-image">
         </div>
+        <div class="footer-spacer"></div>
     </div>
 
+    <!-- Add this new footer section just before the closing </body> tag -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ZebraZilla</h3>
+                <p>ZebraZilla is a revolutionary meme coin combining the stripes of a zebra with the might of Godzilla. Join our community and be part of the next big thing in crypto!</p>
+            </div>
+            <div class="footer-section">
+                <h3>Disclaimer</h3>
+                <ul>
+                    <a>This website is an independent, community-driven platform and does NOT officially represent ZebraZilla. The content provided is solely for entertainment and informational purposes. 
+
+                    </a>
+                    <a>Not Financial Advice: This website does not provide financial or investment advice. Always consult a professional before making financial decisions involving ZebraZilla or any other cryptocurrency.</a>
+                   
+                
+                 
+                    <!-- Removed: <li><a href="#">Whitepaper</a></li> -->
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://x.com/ZebraZillaCoin" target="_blank"><img src="https://i.ibb.co/hZ5cJGs/social-media-14417460-1.jpg" alt="X (Twitter)"></a>
+                    <a href="https://t.me/+pBA3TnLKUAUzY2Y0" target="_blank"><img src="https://i.ibb.co/xLkpwTv/paper-plane-15793418.jpg" alt="Telegram"></a>
+                    <a href="https://pump.fun" target="_blank"><img src="https://i.ibb.co/1bMB9JZ/0-Rwq-Gm887t-St-Aj-YXs-removebg-preview.png" alt="Pump.fun"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ZebraZilla. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
+        const fallingCoinsContainer = document.getElementById('falling-coins-container');
+        const buyBox = document.querySelector('.buy-box');
+        let isHovering = false;
+
         function createFallingCoin() {
             const coin = document.createElement('img');
             coin.src = 'https://i.ibb.co/7Vr2mDH/mastnyjozo-generate-me-crypto-cartoon-coin-2-D-with-name-Zebra-Zi-959b453e-e5c1-4bff-9fd7-8579d7c420.png';
@@ -1236,22 +698,34 @@
             coin.style.left = `${Math.random() * 100}vw`;
             coin.style.animationDuration = `${Math.random() * 6 + 6}s`; // 6-12 seconds duration
             coin.style.top = `${Math.random() * -100}px`; // Start above the viewport
-            document.getElementById('falling-coins-container').appendChild(coin);
+            fallingCoinsContainer.appendChild(coin);
 
             // Remove the coin after it has fallen out of view
             setTimeout(() => {
                 coin.remove();
-                // Create a new coin to maintain the count
-                createFallingCoin();
+                // Create a new coin only if still hovering
+                if (isHovering) {
+                    createFallingCoin();
+                }
             }, parseFloat(coin.style.animationDuration) * 1000);
         }
 
-        // Create initial coins
-        for (let i = 0; i < 15; i++) { // Increased to 15 initial coins
-            createFallingCoin();
+        function startFallingCoins() {
+            isHovering = true;
+            // Create initial coins
+            for (let i = 0; i < 15; i++) {
+                createFallingCoin();
+            }
         }
 
-        // No need for setInterval anymore
+        function stopFallingCoins() {
+            isHovering = false;
+            // Clear all existing coins
+            fallingCoinsContainer.innerHTML = '';
+        }
+
+        buyBox.addEventListener('mouseenter', startFallingCoins);
+        buyBox.addEventListener('mouseleave', stopFallingCoins);
     </script>
 </body>
 </html>
