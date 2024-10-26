@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zebra-Zilla Menu Bar</title>
+    <title>ZebraZilla</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/ZNPcmdD/Zebra-Zilla-removebg-preview.png">
     <style>
         body {
             margin: 0;
@@ -33,7 +34,8 @@
             justify-content: space-between;
             transform: perspective(1000px) rotateX(2deg);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3),
-                        inset 0 -8px 0 0 rgba(0,0,0,0.2);
+                        inset 0 -8px 0 0 rgba(0,0,0,0.2),
+                        0 10px 20px rgba(0,0,0,0.5); /* Added black shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .menu-bar::after {
@@ -50,7 +52,8 @@
         .menu-bar:hover {
             transform: perspective(1000px) rotateX(0deg);
             box-shadow: 0 8px 20px rgba(0,0,0,0.4),
-                        inset 0 -10px 0 0 rgba(0,0,0,0.3);
+                        inset 0 -10px 0 0 rgba(0,0,0,0.3),
+                        0 15px 30px rgba(0,0,0,0.6); /* Enhanced shadow on hover */
         }
         .logo {
             max-height: 110px; /* Slightly increased from the previous value */
@@ -74,8 +77,8 @@
             background-color: rgba(9, 156, 148, 0.8);
             border: 3px solid #000000;
             border-radius: 50px;
-            padding: 20px 30px; /* Further increased padding */
-            font-size: 28px; /* Further increased font size */
+            padding: 20px 30px;
+            font-size: 28px;
             font-weight: bold;
             color: #ffffff;
             text-align: center;
@@ -90,8 +93,8 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
-            max-width: 320px; /* Increased from 280px to 320px */
-            margin: 0 auto; /* Center the box */
+            max-width: 320px;
+            margin: 0 auto;
             animation: blinkingShadow 2s infinite;
         }
         .buy-box::before {
@@ -241,10 +244,36 @@
         .zilla-image {
             max-width: 300px;
             height: auto;
-            margin-top: 20px; /* Add this line to move the image down */
+            margin-top: 20px;
             margin-bottom: 20px;
             border-radius: 15px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            animation: slowBounce 4s ease-in-out infinite, shadowFlicker 5s infinite;
+        }
+
+        @keyframes slowBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Reduced from -15px to -10px for a gentler bounce */
+            }
+        }
+
+        @keyframes shadowFlicker {
+            0%, 100% {
+                box-shadow: 
+                    0 10px 20px rgba(0,0,0,0.4),
+                    0 6px 6px rgba(0,0,0,0.3),
+                    0 0 0 15px rgba(128, 128, 128, 0.6),
+                    0 0 20px 5px rgba(128, 128, 128, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    0 15px 25px rgba(0,0,0,0.5),
+                    0 8px 8px rgba(0,0,0,0.4),
+                    0 0 0 20px rgba(128, 128, 128, 0.7),
+                    0 0 30px 10px rgba(128, 128, 128, 0.4);
+            }
         }
 
         @media (max-width: 768px) {
@@ -360,7 +389,7 @@
             background-color: rgba(9, 156, 148, 0.8);
             border: 3px solid #000000;
             border-radius: 25px;
-            padding: 8px 12px; /* Reduced padding */
+            padding: 8px 12px;
             font-size: 16px;
             font-weight: bold;
             color: #ffffff;
@@ -368,16 +397,16 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.3),
                         inset 0 -8px 0 0 rgba(0,0,0,0.2);
             cursor: pointer;
-            margin: 20px auto; /* Reduced top and bottom margin */
+            margin: 20px auto;
             transform: perspective(1000px) rotateX(10deg) rotateY(0deg);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            max-width: 300px; /* Reduced max-width */
+            max-width: 300px;
             width: 100%;
-            height: 40px; /* Reduced height */
+            height: 40px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* Center content horizontally */
         }
 
         .ca-box:hover {
@@ -395,16 +424,16 @@
 
         .ca-text {
             flex-grow: 1;
-            text-align: left;
+            text-align: center; /* Center text */
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            font-size: 16px; /* Slightly reduced font size */
+            font-size: 16px;
             text-shadow: 1px 1px 0 #000000;
         }
 
         .clipboard-icon {
-            width: 20px; /* Reduced icon size */
+            width: 20px;
             height: 20px;
-            margin-left: 8px; /* Reduced margin */
+            margin-left: 8px;
         }
 
         @media (max-width: 768px) {
@@ -442,7 +471,10 @@
             padding: 40px 0 20px;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             border-top: 3px solid #000000;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3), 0 -10px 20px rgba(0,0,0,0.5); /* Added black shadow */
+            margin-top: -270px; /* Slightly increased from -250px */
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -531,13 +563,14 @@
         /* New style for the space between CA box and footer */
         .footer-spacer {
             flex-grow: 1;
-            min-height: 200px; /* Add minimum height to ensure scrollability */
+            min-height: 50px; /* Further reduced from 100px to 50px */
         }
 
         .content-wrapper {
             flex: 1 0 auto;
             display: flex;
             flex-direction: column;
+            padding-bottom: 320px; /* Slightly increased from 300px */
         }
 
         .container {
@@ -550,7 +583,7 @@
 
         .footer-spacer {
             flex-grow: 1;
-            min-height: 200px;
+            min-height: 50px;
         }
 
         .site-footer {
@@ -561,7 +594,10 @@
             padding: 40px 0 20px;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             border-top: 3px solid #000000;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3), 0 -10px 20px rgba(0,0,0,0.5); /* Added black shadow */
+            margin-top: -270px; /* Slightly increased from -250px */
+            position: relative; /* Add this line */
+            z-index: 1; /* Add this line to ensure the footer stays on top */
         }
 
         /* ... rest of the existing styles ... */
@@ -579,6 +615,7 @@
             justify-content: center;
             text-align: center;
             padding: 20px;
+            margin-bottom: -160px; /* Slightly increased from -150px */
         }
 
         .zebra-title {
@@ -610,12 +647,29 @@
                             0 0 20px rgba(0, 255, 0, 0.7);
             }
         }
+
+        .ca-box.copied {
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+        }
+
+        .ca-box.copied .clipboard-icon {
+            display: none;
+        }
+
+        .buy-box .dollar-sign {
+            color: #00cc00; /* Darker green color for the dollar sign */
+            text-shadow: 1px 1px 0 #000000; /* Maintain readability with a black shadow */
+            -webkit-text-stroke: 1px black; /* For webkit browsers */
+            text-stroke: 1px black; /* Standard property (not widely supported yet) */
+            paint-order: stroke fill; /* Ensures the stroke is outside the fill */
+        }
     </style>
 </head>
 <body>
     <div class="content-wrapper">
         <nav class="menu-bar">
-            <a href="/" class="logo-link">
+            <a href="#" class="logo-link" id="logoLink">
                 <img src="https://i.ibb.co/1sZXtqy/Zebra-Zilla2.jpg" alt="Zebra-Zilla2 Logo" class="logo">
             </a>
             <div class="social-icons">
@@ -640,9 +694,9 @@
                 <!-- Updated image -->
                 <img src="https://i.ibb.co/jV9t7jb/Zilla-Bez-noh.jpg" alt="ZebraZilla Logo" class="zilla-image">
                 <a href="#" class="buy-box" onclick="alert('Buy $ZebraZilla Coin clicked!');">
-                    Buy <span style="color: green;">$</span>ZebraZilla Coin
+                    Buy <span class="dollar-sign">$</span>ZebraZilla Coin
                 </a>
-                <div class="ca-box" onclick="copyCA()">
+                <div class="ca-box" id="caBox">
                     <span class="ca-text">CA: mi XXXXX</span>
                     <img src="https://i.ibb.co/1qc2Bfm/copy-3962627.png" alt="Copy" class="clipboard-icon">
                 </div>
@@ -726,6 +780,38 @@
 
         buyBox.addEventListener('mouseenter', startFallingCoins);
         buyBox.addEventListener('mouseleave', stopFallingCoins);
+
+        const caBox = document.getElementById('caBox');
+        const originalText = caBox.querySelector('.ca-text').textContent;
+        const clipboardIcon = caBox.querySelector('.clipboard-icon');
+        
+        caBox.addEventListener('mouseenter', () => {
+            caBox.style.cursor = 'pointer';
+        });
+
+        caBox.addEventListener('click', () => {
+            const caText = caBox.querySelector('.ca-text').textContent;
+            navigator.clipboard.writeText(caText).then(() => {
+                caBox.querySelector('.ca-text').textContent = 'Address Copied!';
+                caBox.classList.add('copied');
+                clipboardIcon.style.display = 'none';
+                
+                setTimeout(() => {
+                    caBox.querySelector('.ca-text').textContent = originalText;
+                    caBox.classList.remove('copied');
+                    clipboardIcon.style.display = 'inline';
+                }, 2000); // Reset after 2 seconds
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+
+        // Add this new code at the end of the script section
+        document.getElementById('logoLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            // You can add any additional actions here if needed
+            console.log('Logo clicked, but page not redirected');
+        });
     </script>
 </body>
 </html>
